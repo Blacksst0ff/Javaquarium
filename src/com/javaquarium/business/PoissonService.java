@@ -1,8 +1,8 @@
 package com.javaquarium.business;
 
 import java.util.ArrayList;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.javaquarium.beans.data.PoissonDO;
 import com.javaquarium.beans.web.PoissonVO;
@@ -78,9 +78,14 @@ public class PoissonService implements IPoissonService {
 	}
 
 	@Override
-	public ArrayList<PoissonVO> getAllPoissons() {
-		pdao.getAllPoissons(mapVOtoDO(pvo));
-		return ArrayList pdao;
+	public List<PoissonVO> getAllPoissons() {
+		List<PoissonVO> list = new ArrayList<>();
+
+		List<PoissonDO> listdo = pdao.getAllPoissons();
+		for (PoissonDO poissonDO : listdo) {
+			list.add(mapDOtoVO(poissonDO));
+		}
+		return list;
 	}
 
 }

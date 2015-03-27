@@ -1,6 +1,7 @@
 package com.javaquarium.business;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.javaquarium.beans.web.PoissonVO;
 
@@ -22,7 +23,7 @@ public interface IPoissonService {
 	 */
 	void ajouterPoisson(final PoissonVO pvo);
 
-	ArrayList<PoissonVO> getAllPoissons();
+	List<PoissonVO> getAllPoissons();
 
 	boolean poissonExist(String espece);
 

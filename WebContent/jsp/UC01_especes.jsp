@@ -35,9 +35,9 @@
 				<th><bean:message key="message.listerPoisson.monaquarium" /></th>
 			</tr>
 		</thead>
-		<tr>
+		
 			<logic:iterate name="<%= Consts.SESSION_MES_POISSONS_LIST %>" id="poisson">
-
+			<tr>
 			<td><bean:write name="poisson" property="espece"/></td>
 			<td><bean:write name="poisson" property="description"/></td>
 			<td><bean:write name="poisson" property="couleur"/></td>
@@ -45,9 +45,9 @@
 			<td><bean:write name="poisson" property="prix"/></td>
 			<td><a href="#"><bean:message key="message.listerPoisson.detail" /></a></td>
 			<td><a href="#"><bean:message key="message.listerPoisson.ajouter" /></a> <a href="#"><bean:message key="message.listerPoisson.supprimer" /></a></td>
-			
+			</tr>
 			</logic:iterate>
-		</tr>
+		
 
 	</table>
 
