@@ -15,23 +15,20 @@ import com.javaquarium.dao.PoissonDAO;
  */
 public class PoissonService implements IPoissonService {
 
-	final IPoissonDAO pdao ;
-	
+	final IPoissonDAO pdao;
+
 	public PoissonService() {
 		pdao = new PoissonDAO();
 	}
-	
-	public ArrayList<PoissonVO> getAllPoissons() {
-		ArrayList<PoissonVO> mes_poissons = new ArrayList<PoissonVO>();
-		final PoissonVO pvo = new PoissonVO();
-		pvo.setEspece("Nemo");
-		pvo.setDescription("Peut respirer sous l'eau");
-		pvo.setCouleur("orange");
-		pvo.setDimension("20.0 x 15.0");
-		pvo.setPrix(15);
-		mes_poissons.add(pvo);
-		return mes_poissons;
-	}
+
+	/*
+	 * public ArrayList<PoissonVO> getAllPoissons() { ArrayList<PoissonVO>
+	 * mes_poissons = new ArrayList<PoissonVO>(); final PoissonVO pvo = new
+	 * PoissonVO(); pvo.setEspece("Nemo");
+	 * pvo.setDescription("Peut respirer sous l'eau"); pvo.setCouleur("orange");
+	 * pvo.setDimension("20.0 x 15.0"); pvo.setPrix(15); mes_poissons.add(pvo);
+	 * return mes_poissons; }
+	 */
 
 	@Override
 	public void supprimerPoisson(final PoissonVO pvo) {
@@ -58,11 +55,32 @@ public class PoissonService implements IPoissonService {
 		pdo.setLongueur(longueur);
 		pdo.setLargeur(largeur);
 		return pdo;
-		
+
 	}
-	
-	public boolean poissonExist(String nom){
+
+	public PoissonVO mapDOtoVO(final PoissonDO pdo) {
+		PoissonVO pvo = new PoissonVO();
+		pvo.setEspece(pdo.getEspece());
+		pvo.setDescription(pdo.getDescription());
+		pvo.setPrix(pdo.getPrix());
+		pvo.setCouleur(pdo.getCouleur());
+
+		String largeur = pdo.getLargeur().toString();
+		String longueur = pdo.getLongueur().toString();
+		String dimension = largeur.concat("x").concat(longueur);
+		pvo.setDimension(dimension);
+
+		return pvo;
+	}
+
+	public boolean poissonExist(String nom) {
 		return pdao.poissonExist(nom);
+	}
+
+	@Override
+	public ArrayList<PoissonVO> getAllPoissons() {
+		pdao.getAllPoissons(mapVOtoDO(pvo));
+		return ArrayList pdao;
 	}
 
 }
