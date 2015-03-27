@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config 
+PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<!-- Définition des Formulaires -->
+
+	<form-beans type="org.apache.struts.action.ActionFormBean"> 
+		<form-bean name="loginForm" type="com.javaquarium.beans.web.LoginVO" />
+		<form-bean name="NouvelleEspeceForm" type="com.javaquarium.beans.web.PoissonVO" />
+	</form-beans>
+
+	<action-mappings>
+		<action path="/listerEspece" type="com.javaquarium.action.ListerEspeceAction"> 
+		<!-- <action path="/listerEspece" type="org.springframework.web.struts.DelegatingActionProxy">-->
+			<forward name="bienvenue" path="/jsp/UC01_especes.jsp" />
+		</action>
+
+		<action path="/loginForm" name="loginForm" input="/jsp/UC00_login.jsp"
+			scope="request" type="com.javaquarium.action.LoginAction"> 
+		<!-- <action path="/loginForm" name="loginForm" input="/jsp/UC00_login.jsp"
+			scope="request" type="org.springframework.web.struts.DelegatingActionProxy">-->
+			<forward name="success" path="/listerEspece.do" />
+		</action>
+		
+		<action path="/NouvelleEspeceForm" name="NouvelleEspeceForm" input="/jsp/UC02_nouvelle_espece.jsp"
+			scope="request" type="com.javaquarium.action.AjoutEspeceAction"> 
+		<!-- <action path="/NouvelleEspeceForm" name="NouvelleEspeceForm" input="/jsp/UC02_nouvelle_espece.jsp"
+			scope="request" type="org.springframework.web.struts.DelegatingActionProxy">-->
+			<forward name="success" path="/listerEspece.do" />
+		</action>
+
+	</action-mappings>
+
+	<!-- Application ressource -->
+	<message-resources parameter="ApplicationResources" />
+	
+	<!-- <plug-in className="org.springframework.web.struts/ContextLoaderPlugIn">
+		<set-property property="contextConfigLacotion" value="/WEB-INF/applicationContext.xml"/>
+	</plug-in> -->
+</struts-config>
